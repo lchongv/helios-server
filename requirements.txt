@@ -10,11 +10,12 @@ pycrypto==2.6.1
 celery==4.3.0
 python3-openid==3.1.0
 html5lib==1.0.1 # Dependency of bleach
+django-heroku
+gunicorn==19.9
 
 # anyjson==0.3.3  ?? not imported by anything
 # pyparsing==2.4.0  ?? not imported by anything
 # python-dateutil>=1.5  ?? not imported by anything
-# gunicorn==19.9
 # requests==2.21.0
 # unicodecsv==0.14.1
 # dj_database_url==0.3.0
