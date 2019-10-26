@@ -12,6 +12,8 @@ python3-openid==3.1.0
 html5lib==1.0.1 # Dependency of bleach
 django-heroku
 gunicorn==19.9
+whitenoise
+
 
 # anyjson==0.3.3  ?? not imported by anything
 # pyparsing==2.4.0  ?? not imported by anything
