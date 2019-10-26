@@ -323,11 +323,12 @@ AUTH_ENABLED_AUTH_SYSTEMS = get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'google').
 AUTH_DEFAULT_AUTH_SYSTEM = get_from_env('AUTH_DEFAULT_AUTH_SYSTEM', None)
 
 # google
-# GOOGLE_CLIENT_ID = get_from_env('GOOGLE_CLIENT_ID', GOOGLEID)
-# GOOGLE_CLIENT_SECRET = get_from_env('GOOGLE_CLIENT_SECRET', GOOGLESECRET)
-GOOGLE_CLIENT_ID = os.environ['GOOGLEID']
-GOOGLE_CLIENT_SECRET = os.environ['GOOGLESECRET']
-
+if PRODUCTION:
+    GOOGLE_CLIENT_ID = os.environ['GOOGLEID']
+    GOOGLE_CLIENT_SECRET = os.environ['GOOGLESECRET']
+else:
+    GOOGLE_CLIENT_ID = get_from_env('GOOGLE_CLIENT_ID', GOOGLEID)
+    GOOGLE_CLIENT_SECRET = get_from_env('GOOGLE_CLIENT_SECRET', GOOGLESECRET)
 
 # facebook
 FACEBOOK_APP_ID = get_from_env('FACEBOOK_APP_ID','')
@@ -387,7 +388,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 # CELERY                     #
 ##############################
 
-CELERY_BROKER_URL = 'amqp://localhost'
+# CELERY_BROKER_URL = 'amqp://localhost'
+CELERY_BROKER_URL = os.environ['REDIS_URL']
 CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
