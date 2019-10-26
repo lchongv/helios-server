@@ -1,11 +1,21 @@
 
 import os, json
 import django_heroku
-# from secrets import DBPWD, GOOGLESECRET, GOOGLEID
 
 ##############################
 # SETUP                      #
 ##############################
+
+# Set whether for production (or local development).
+# If for local developoment import secret credentials for Google authentication account and local database user password.
+# Also set URL_HOST (later).
+PRODUCTION = True
+
+# Import database password and Google authentication account credentials from secrets.py
+# secrets.py is included in .gitignore so it is never uploaded to the public Github repository
+if not PRODUCTION:
+    from secrets import DBPWD, GOOGLESECRET, GOOGLEID
+
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
@@ -55,8 +65,6 @@ logging.basicConfig(
 # (it is stored in database and does not change).
 # Don't use:  SECURE_URL_HOST = "https://localhost:8443"
 
-PRODUCTION = True
-
 if PRODUCTION:
     URL_HOST = "https://helios-heroku.herokuapp.com"
     SECURE_URL_HOST = "https://helios-heroku.herokuapp.com"
@@ -84,16 +92,22 @@ ALLOWED_HOSTS = ['*']
 # DATABASES                  #
 ##############################
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'helios',
-        # 'USER': 'warwickmcnaughton',
-        # 'PASSWORD': DBPWD,
+if PRODUCTION:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'helios',
+        }
     }
-}
-
-
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'helios',
+            'USER': 'warwickmcnaughton',
+            'PASSWORD': DBPWD,
+        }
+    }
 
 ##############################
 # URLS / DIRECTORIES         #
@@ -309,8 +323,8 @@ AUTH_ENABLED_AUTH_SYSTEMS = get_from_env('AUTH_ENABLED_AUTH_SYSTEMS', 'google').
 AUTH_DEFAULT_AUTH_SYSTEM = get_from_env('AUTH_DEFAULT_AUTH_SYSTEM', None)
 
 # google
-# GOOGLE_CLIENT_ID = get_from_env('GOOGLE_CLIENT_ID', GOOGLEID)
-# GOOGLE_CLIENT_SECRET = get_from_env('GOOGLE_CLIENT_SECRET', GOOGLESECRET)
+GOOGLE_CLIENT_ID = get_from_env('GOOGLE_CLIENT_ID', GOOGLEID)
+GOOGLE_CLIENT_SECRET = get_from_env('GOOGLE_CLIENT_SECRET', GOOGLESECRET)
 
 # facebook
 FACEBOOK_APP_ID = get_from_env('FACEBOOK_APP_ID','')
