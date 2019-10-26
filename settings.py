@@ -55,11 +55,11 @@ logging.basicConfig(
 # (it is stored in database and does not change).
 # Don't use:  SECURE_URL_HOST = "https://localhost:8443"
 
-PRODUCTION = False
+PRODUCTION = True
 
 if PRODUCTION:
-    URL_HOST = "https://voting-app-82048.appspot.com"
-    SECURE_URL_HOST = "https://voting-app-82048.appspot.com"
+    URL_HOST = "https://helios-heroku.herokuapp.com"
+    SECURE_URL_HOST = "https://helios-heroku.herokuapp.com"
 
 else:
     URL_HOST = get_from_env("URL_HOST", "http://localhost:8000").rstrip("/")
