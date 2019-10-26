@@ -1,1 +1,1 @@
-web: gunicorn helios-server.wsgi
+web: gunicorn wsgi
