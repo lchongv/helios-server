@@ -117,7 +117,7 @@ MEDIA_URL = ''
 # You should do that in directories that will be found by staticfiles’s finders, which by default, 
 # are 'static/' app sub-directories and any directories you include in STATICFILES_DIRS).
 # https://docs.djangoproject.com/en/2.1/ref/settings/#std:setting-STATIC_ROOT
-STATIC_ROOT = 'static/'
+# STATIC_ROOT = 'static/'
 
 # URL to use when referring to static files located in STATIC_ROOT.
 STATIC_URL = '/static/'
