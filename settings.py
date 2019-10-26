@@ -1,5 +1,6 @@
 
 import os, json
+import django_heroku
 # from secrets import DBPWD, GOOGLESECRET, GOOGLEID
 
 ##############################
@@ -416,3 +417,10 @@ if ROLLBAR_ACCESS_TOKEN:
     'access_token': ROLLBAR_ACCESS_TOKEN,
     'environment': 'development' if DEBUG else 'production',  
   }
+
+##############################
+# HEROKU                   #
+##############################
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
