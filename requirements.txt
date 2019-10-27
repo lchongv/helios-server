@@ -13,6 +13,7 @@ html5lib==1.0.1 # Dependency of bleach
 django-heroku
 gunicorn==19.9
 whitenoise
+redis
 
 
 # anyjson==0.3.3  ?? not imported by anything
