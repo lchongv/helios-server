@@ -14,6 +14,7 @@ django-heroku
 gunicorn==19.9
 whitenoise
 redis
+django-redis-cache
 
 
 # anyjson==0.3.3  ?? not imported by anything

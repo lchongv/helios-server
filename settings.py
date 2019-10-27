@@ -423,6 +423,13 @@ CELERY_RESULT_SERIALIZER = 'json'
 # Always create logfile directory. By default only enable when no custom logfile location set.
 # CELERY_CREATE_LOGDIR
 
+# Required for using Redis on Heroku: https://devcenter.heroku.com/articles/heroku-redis#configuring-your-instance
+CACHES = {
+    "default": {
+         "BACKEND": "redis_cache.RedisCache",
+         "LOCATION": os.environ.get('REDIS_URL'),
+    }
+}
 
 ##############################
 # ROLLBAR                    #
