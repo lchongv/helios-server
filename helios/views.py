@@ -1286,7 +1286,8 @@ def voters_upload(request, election):
   ## TRYING this: allowing voters upload by admin when election is frozen
   #if election.frozen_at and not election.openreg:
   #  raise PermissionDenied()
-
+  from settings import CELERY_BROKER_URL
+  print("This is CELERY_BROKER_URL", CELERY_BROKER_URL)
   if request.method == "GET":
     return render_template(request, 'voters_upload', {'election': election, 'error': request.GET.get('e',None)})
     
