@@ -1,2 +1,2 @@
 web: gunicorn wsgi
-worker: Celery worker -A helios -l info
+worker: celery worker -A helios -l info
