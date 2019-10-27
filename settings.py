@@ -390,6 +390,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 
 # CELERY_BROKER_URL = 'amqp://localhost'
 CELERY_BROKER_URL = os.environ['REDIS_URL']
+BROKER_URL = os.environ['REDIS_URL']
 # CELERY_RESULT_BACKEND = 'rpc://'
 CELERY_RESULT_BACKEND = os.environ['REDIS_URL']
 CELERY_TASK_SERIALIZER = 'json'
