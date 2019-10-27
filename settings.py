@@ -364,24 +364,23 @@ CLEVER_CLIENT_SECRET = get_from_env('CLEVER_CLIENT_SECRET', "")
 # EMAIL                      #
 ##############################
 
-# EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
-# EMAIL_PORT = int(get_from_env('EMAIL_PORT', "2525"))
-# EMAIL_HOST_USER = get_from_env('EMAIL_HOST_USER', '')
-# EMAIL_HOST_PASSWORD = get_from_env('EMAIL_HOST_PASSWORD', '')
-# EMAIL_USE_TLS = (get_from_env('EMAIL_USE_TLS', '0') == '1')
-EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-# EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
-# EMAIL_FILE_PATH = '/Users/warwickmcnaughton/Projects/Helios/Voter_list' 
-
-
-# to use AWS Simple Email Service
-# in which case environment should contain
-# # AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
-# if get_from_env('EMAIL_USE_AWS', '0') == '1':
-#     EMAIL_BACKEND = 'django_ses.SESBackend'
-
-
+if PRODUCTION:
+    # sendgrid addon for Heroku
+    EMAIL_HOST = 'smtp.sendgrid.net'
+    EMAIL_HOST_USER = 'apikey'
+    EMAIL_HOST_PASSWORD = os.environ['SENDGRID_API_KEY']
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+else:
+    # EMAIL_HOST = get_from_env('EMAIL_HOST', 'localhost')
+    # EMAIL_PORT = int(get_from_env('EMAIL_PORT', "2525"))
+    # EMAIL_HOST_USER = get_from_env('EMAIL_HOST_USER', '')
+    # EMAIL_HOST_PASSWORD = get_from_env('EMAIL_HOST_PASSWORD', '')
+    # EMAIL_USE_TLS = (get_from_env('EMAIL_USE_TLS', '0') == '1')
+    EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+    # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    # EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+    # EMAIL_FILE_PATH = '/Users/warwickmcnaughton/Projects/Helios/Voter_list' 
 
 
 ##############################
